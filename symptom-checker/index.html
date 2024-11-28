@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>無「病」不知</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- 主畫面 -->
+    <div id="main-page" class="page active">
+        <header id="main-header">
+            <img src="logo.png" alt="Logo" class="logo">
+            <h1>無「病」不知</h1>
+            <p>輸入您的症狀，我們將為您推薦可能的疾病和合適的科別</p>
+        </header>
+        <main>
+            <section class="search-section">
+                <input type="text" id="search-input" placeholder="請輸入症狀...">
+                <button id="search-btn" class="button"><i class="fas fa-search"></i></button>
+            </section>
+        </main>
+    </div>
+
+    <!-- 加載畫面 -->
+    <div id="loading-page" class="page">
+        <main class="loading-screen">
+            <div class="spinner"></div>
+            <p>正在搜尋，請稍候...</p>
+        </main>
+    </div>
+
+    <!-- 結果畫面 -->
+    <div id="results-page" class="page">
+        <header class="result-header">
+            <div>
+                <button id="back-btn" class="back-button"></button>
+                <h1>搜尋結果</h1> 
+            </div>
+            <div class="search-section">
+                <input type="text" id="new-search-input" placeholder="請輸入症狀...">
+                <button id="new-search-btn" class="button"><i class="fas fa-search"></i></button>
+            </div>
+        </header>
+        <main id="results-container"></main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+/* 全域樣式 */
+body {
+    font-family: "思源黑體", "Source Han Sans", "Microsoft JhengHei", Arial, sans-serif;
+    background-color: #ECFFE4;
+    color: #036B38;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* 主畫面樣式 */
+#main-header {
+    background-color: #C2FF75;
+    padding: 1rem;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1rem;
+}
+
+.search-section {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* 搜尋框與按鈕的間距 */
+}
+
+.search-section input {
+    width: 60%;
+    padding: 0.75rem;
+    border: 1px solid #036B38;
+    border-radius: 100px;
+    background-color: #ffffff;
+    outline: none;
+    font-size: 1rem;
+    color: #036B38;
+    padding-left: 20px; /* 增加文字內距 */
+}
+
+
+/* 加載畫面樣式 */
+.loading-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ECFFE4;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #ccc;
+    border-top-color: #5AA469;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 結果畫面樣式 */
+.result-header {
+    background-color: #C2FF75;
+    color: #036B38;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.result-header h1 {
+   
+    font-size: 2rem;
+    margin: 0; 
+    display: inline-block;/* 確保 LOGO 與標題同行顯示 */
+    position: relative;
+    top: 10px; /* 向下移動 10px */
+}
+
+.result-header .search-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+   
+    
+}
+
+.result-header .search-section input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #5AA469;
+    border-radius: 10px;
+}
+
+
+/* 通用樣式 */
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.disease-card {
+    background-color: white;
+    padding: 0.8rem;
+    border: 1px solid #DDD;
+    border-radius: 20px;
+    margin: 0.5rem auto;
+    max-width: 550px;
+    text-align: left;
+}
+
+.department-info {
+    color: rgb(254, 102, 102); /* 设置文字颜色为红色 */
+    font-weight: bold; /* 设置文字加粗 */
+}
+
+
+/* 通用按鈕樣式 */
+.button {
+    background-color: var(--primary-color, #5AA469);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px; 
+    height: 45px;
+    border-radius: 50%;
+}
+
+/* 圖示樣式 */
+.button i {
+    font-size: 1rem; /* 調整圖示大小 */
+    color: white; /* 圖示顏色 */
+}
+
+/* 按鈕 Hover 效果 */
+.button:hover {
+    background-color: var(--secondary-color, #4A9C59);
+}
+
+.back-button{
+    width: 100px; /* 設定按鈕寬度 */
+  height: 100px; /* 設定按鈕高度 */
+  background-image: url('logo.png');
+  background-size: cover;
+  /*background-position: center;*/
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  
+
+}
