@@ -30,48 +30,6 @@ with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
     writer.writerow(["疾病分類", "疾病名稱", "症狀", "併發症", "危險族群", "科別", "部位"])
 
-
-def click_tab_and_extract_list(driver, tab_css_selector, article_css_selector):
-    try:
-        tab_element = driver.find_element(By.CSS_SELECTOR, tab_css_selector)
-        tab_element.click()
-        time.sleep(1)  # 等待頁面更新
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, article_css_selector)))
-        ul_element = driver.find_element(By.CSS_SELECTOR, f"{article_css_selector} ul")
-        list_items = ul_element.find_elements(By.TAG_NAME, "li")
-        return [item.text.strip() for item in list_items if item.text.strip()]
-    except Exception as e:
-        print(f"點擊 {tab_css_selector} 並抓取數據失敗: {e}")
-        return []
-
-
-def go_back_and_wait(driver, css_selector, base_url=None, timeout=30):
-    """
-    返回上一頁並等待目標元素出現，若超時則嘗試刷新或重新導航
-    """
-    try:
-        driver.back()
-        WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.CSS_SELECTOR, css_selector)))
-        print(f"成功返回上一頁並找到目標元素：{css_selector}")
-    except TimeoutException:
-        print(f"返回上一層失敗，嘗試刷新或重新加載頁面...")
-        if base_url:
-            driver.get(base_url)
-            try:
-                WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.CSS_SELECTOR, css_selector)))
-                print(f"成功通過重新加載頁面找到目標元素：{css_selector}")
-            except TimeoutException:
-                print(f"重新加載頁面後仍未找到目標元素：{css_selector}")
-                raise
-        else:
-            driver.refresh()
-            try:
-                WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.CSS_SELECTOR, css_selector)))
-                print(f"成功通過刷新頁面找到目標元素：{css_selector}")
-            except TimeoutException:
-                print(f"刷新頁面後仍未找到目標元素：{css_selector}")
-                raise
-
 def click_tab_and_extract_list_by_text(driver, tab_text):
     """
     通過導航欄中的文字點擊並提取對應的內容數據，處理元素遮擋問題。
