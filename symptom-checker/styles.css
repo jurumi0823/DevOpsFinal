@@ -1,166 +1,210 @@
-/* 全域樣式 */
+/* 通用樣式 */
 body {
     font-family: "思源黑體", "Source Han Sans", "Microsoft JhengHei", Arial, sans-serif;
-    background-color: #ECFFE4;
-    color: #036B38;
     margin: 0;
     padding: 0;
+    background-color: #E8F5E9;
+    color: #2E7D32;
     text-align: center;
+    line-height: 1.6;
 }
 
-/* 主畫面樣式 */
 #main-header {
-    background-color: #C2FF75;
-    padding: 1rem;
+    background-color: #A5D6A7; /* 更柔和的綠色 */
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加輕微陰影 */
 }
 
+h1 {
+    color: #2E7D32;
+    margin: 12px 0;
+}
+
+h2 {
+    color: #2E7D32;
+    margin: 15px 0 10px;
+}
+
+h3 {
+    color: #2E7D32;
+    margin-bottom: 10px;
+}
+
+h4 {
+    margin: 10px 0 5px;
+}
+
+/* 標誌樣式 */
 .logo {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 1rem;
+    max-width: 150px;
+    margin: 12px auto;
 }
 
-.search-section {
-    margin-top: 3rem;
+/* 表單樣式 */
+form {
+    margin: 20px auto;
     display: flex;
     justify-content: center;
+    gap: 10px;
     align-items: center;
-    gap: 10px; /* 搜尋框與按鈕的間距 */
 }
 
-.search-section input {
-    width: 60%;
-    padding: 0.75rem;
-    border: 1px solid #036B38;
+form input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #2f932b;
+    font-size: 16px;
     border-radius: 100px;
-    background-color: #ffffff;
-    outline: none;
-    font-size: 1rem;
-    color: #036B38;
-    padding-left: 20px; /* 增加文字內距 */
 }
 
-
-/* 加載畫面樣式 */
-.loading-screen {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #ECFFE4;
-}
-
-.spinner {
+form button {
+    background-color: #2E7D32;
+    color: white;
+    border: none;
+    border-radius: 50%; /* 圓形按鈕 */
+    padding: 0.8rem;
     width: 50px;
     height: 50px;
-    border: 5px solid #ccc;
-    border-top-color: #5AA469;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+
 }
 
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+form button:hover {
+    background-color: #1B5E20; /* 懸停更深色 */
+    transform: scale(1.1); /* 放大效果 */
 }
 
-/* 結果畫面樣式 */
-.result-header {
-    background-color: #C2FF75;
-    color: #036B38;
-    padding: 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+form button:active {
+    transform: scale(0.95); /* 點擊縮小效果 */
 }
 
-.result-header h1 {
-   
-    font-size: 2rem;
-    margin: 0; 
-    display: inline-block;/* 確保 LOGO 與標題同行顯示 */
-    position: relative;
-    top: 10px; /* 向下移動 10px */
+
+/* 警告訊息樣式 */
+.alert {
+    margin: 20px auto;
+    padding: 10px;
+    max-width: 400px;
+    border: 1px solid #e74c3c;
+    border-radius: 5px;
+    background-color: #fce4e4;
+    color: #e74c3c;
+    font-size: 14px;
 }
 
-.result-header .search-section {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-   
+/* 已選症狀列表樣式 */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
     
 }
 
-.result-header .search-section input {
-    flex: 1;
-    padding: 0.5rem;
-    border: 1px solid #5AA469;
-    border-radius: 10px;
+ul li {
+    background: #ffffff;
+    padding: 10px;
+    margin: 5px auto;
+    max-width: 400px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* 陰影效果 */
 }
 
 
-/* 通用樣式 */
-.page {
-    display: none;
+/* 分析結果樣式 */
+div {
+   
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: left;
+
 }
 
-.page.active {
-    display: block;
+div h4 {
+    color: #333;
+    font-size: 18px;
+}
+
+div p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+}
+.disease-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem; /* 增加卡片之間的距離 */
+    justify-content: center;
 }
 
 .disease-card {
-    background-color: white;
-    padding: 0.8rem;
-    border: 1px solid #DDD;
-    border-radius: 20px;
-    margin: 0.5rem auto;
-    max-width: 550px;
-    text-align: left;
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    width: 100%; /* 默認寬度為父容器的 100% */
+    max-width: 600px; /* 卡片最大寬度設為 600px */
 }
 
-.department-info {
-    color: rgb(254, 102, 102); /* 设置文字颜色为红色 */
-    font-weight: bold; /* 设置文字加粗 */
+.disease-card:hover {
+    transform: translateY(-5px); /* 鼠標懸停時向上浮動 */
 }
 
-
-/* 通用按鈕樣式 */
-.button {
-    background-color: var(--primary-color, #5AA469);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px; 
-    height: 45px;
-    border-radius: 50%;
+.disease-link {
+    text-decoration: none; /* 移除底線 */
+    color: inherit; /* 繼承父元素的文字顏色 */
+    display: block; /* 讓連結覆蓋整個卡片 */
 }
 
-/* 圖示樣式 */
-.button i {
-    font-size: 1rem; /* 調整圖示大小 */
-    color: white; /* 圖示顏色 */
+.disease-card h4 {
+    margin-top: 0; /* 去掉標題的上外邊距 */
+    color: #333; /* 標題顏色 */
 }
 
-/* 按鈕 Hover 效果 */
-.button:hover {
-    background-color: var(--secondary-color, #4A9C59);
+.disease-card p {
+    margin: 0.5rem 0; /* 調整段落的上下外邊距 */
+    color: #555; /* 文字顏色 */
 }
 
-.back-button{
-    width: 100px; /* 設定按鈕寬度 */
-  height: 100px; /* 設定按鈕高度 */
-  background-image: url('logo.png');
-  background-size: cover;
-  /*background-position: center;*/
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
-  
+.disease-card p strong {
+    color: #2E7D32; /* 高亮字段名稱 */
+}
 
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    form {
+        flex-direction: column; /* 表單內容改為縱向排列 */
+        gap: 15px;
+    }
+
+    form input[type="text"] {
+        width: 90%; /* 輸入框全屏寬 */
+    }
+
+    form button {
+        width: 45px;
+        height: 45px;
+    }
+
+    .disease-card {
+        width: 90%; /* 單列佈局 */
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
