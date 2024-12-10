@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>無「病」不知</title>
+</head>
+<body>
+    <header id="main-header">
+    <img src="logo.png" alt="Logo" class="logo">
+    <h1>無「病」不知</h1>
+    <!-- 主畫面 -->
+    {% if not result %}
+    <p>輸入您的症狀，我們將為您推薦可能的疾病和合適的科別。</p>
+</header>
+    <form method="POST" action="/">
+        <input type="text" name="symptom" placeholder="請輸入症狀...">
+        <button type="submit" name="action" value="add_symptom"><i class="fas fa-plus"></i></button>
+        <button type="submit" name="action" value="analyze"><i class="fas fa-search"></i></button>
+        <button type="submit" name="action" value="reset"><i class="fas fa-refresh"></i></button>
+    </form>
+    {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    <h2>已選症狀</h2>
+    <ul>
+        {% for symptom in symptoms %}
+        <li>{{ symptom }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <!-- 結果畫面 -->
+    <div class="result-container fade-in">
+    {% if result %}
+    <div class="result-container">
+    <h2>分析結果</h2>
+    <form method="POST" action="/">
+        <button type="submit" name="action" value="reset"><i class="fas fa-refresh"></i> </button>
+    </form>
+    <h3>推薦科室 (前三名)</h3>
+    <ul>
+        {% for dept in top_departments %}
+        <li>{{ dept.department }} ({{ dept.count }} 次推薦)</li>
+        {% endfor %}
+    </ul>
+
+    <h3>可能的疾病</h3>
+    
+    <div class="disease-container">
+        {% for disease in result.matched_diseases %}
+        <a href="https://health.udn.com/health/search/{{ disease.name }}/disease" target="_blank" class="disease-link">
+            <div class="disease-card">
+                <h4>{{ disease.name }}</h4>
+                <p><strong>症狀:</strong> {{ disease.symptoms | join(', ') }}</p>
+                <p><strong>併發症:</strong> {{ disease.complications | join(', ') }}</p>
+                <p><strong>科室:</strong> {{ disease.departments | join(', ') }}</p>
+                <p><strong>危險族群:</strong> {{ disease.risk_groups }}</p>
+                <p><strong>匹配比例:</strong> {{ disease.match_ratio }}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    
+
+    {% endif %}
+</body>
+</html>
