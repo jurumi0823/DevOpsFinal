@@ -1,0 +1,36 @@
+global:
+  scrape_interval: 5s  # 每 5 秒抓取一次數據
+
+scrape_configs:
+  # 監控 Prometheus 本身
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # 監控垃圾回收指標
+  - job_name: 'app_gc_metrics'  # 用於垃圾回收相關指標的監控
+    static_configs:
+      - targets: ['host.docker.internal:5001']
+
+
+  # 監控 HTTP 請求指標
+  - job_name: 'app_http_requests'  # 用於 HTTP 請求的監控
+    static_configs:
+      - targets: ['host.docker.internal:5001']
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: 'http_requests_.*|http_request_duration_.*'
+        action: keep  # 僅保留 HTTP 請求相關指標
+
+  # 監控錯誤 HTTP 請求
+  - job_name: 'app_error_requests'  # 用於錯誤請求的監控
+    metrics_path: /metrics  # 默認路徑
+    static_configs:
+      - targets: ['host.docker.internal:5001']
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: 'http_requests_total'
+        action: keep
+      - source_labels: [status]
+        regex: '4..|5..'
+        action: keep  # 僅保留錯誤請求數據
