@@ -46,6 +46,7 @@ def disease():
 def error():
     # 模擬一個錯誤請求
     return {"error": "This is a simulated error!"}, 500
+    
 analyzer = SymptomAnalyzer()
 analyzer.load_diseases('disease_data.csv')
 
@@ -64,6 +65,15 @@ def home():
                 error_message = "尚未添加任何症狀，請輸入至少一個症狀！"
                 return render_template('index2.html', symptoms=analyzer.selected_symptoms, error=error_message, result=None)
             result = analyzer.analyze_possible_diseases()
+            if not result.get("matched_diseases"):  # 如果沒有匹配的疾病
+                analyzer.reset_symptoms()
+                error_message = "查無結果，請嘗試輸入其他症狀。"
+                return render_template(
+                'index2.html',
+                symptoms=[],
+                result=None,
+                error=error_message
+            )
             top_departments = result.get("recommended_departments", [])[:3]
             return render_template(
                 'index2.html',
