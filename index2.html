@@ -37,10 +37,11 @@
     <div class="result-container fade-in">
     {% if result %}
     <div class="result-container">
-    <h2>分析結果</h2>
     <form method="POST" action="/">
         <button type="submit" name="action" value="reset"><i class="fas fa-refresh"></i> </button>
     </form>
+    <h2>分析結果</h2>
+    
     <h3>推薦科室 (前三名)</h3>
     <ul>
         {% for dept in top_departments %}
